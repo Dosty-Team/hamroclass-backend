@@ -6,14 +6,14 @@ const authRoute = require("./routers/auth");
 const productRoute = require("./routers/product");
 const categoriesRoute = require("./routers/categories");
 const cors = require("cors");
-
+const semesterRouter = require('./routers/Semester')
 app.use(cors());
 app.use(express.json());
 
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/inventory")
+  .connect("mongodb://127.0.0.1:27017/syllanalysis")
   .then(() => {
     console.log("Connected to database");
     startServer();
@@ -27,6 +27,7 @@ function startServer() {
   app.use("/v1", authRoute);
   app.use("/v1", productRoute);
   app.use("/v1",categoriesRoute);
+  app.use('/v1', semesterRouter);
 
   app.listen(5000, () => {
     console.log("Backend running on port 5000");

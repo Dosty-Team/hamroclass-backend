@@ -36,8 +36,10 @@ app.get('/getdetails', async (req, res) => {
                 // Process the data to create userInfo
                 const userInfo = {
                     totalUsers: allUsers.length,
-                    adminCount: allUsers.filter(user => user.role === "Admin").length,
-                    normalCount: allUsers.filter(user => user.role === "Normal").length,
+                    adminCount: allUsers.filter(user => user.role === "College_Admin").length,
+                    normalCount: allUsers.filter(user => user.role === "Student").length,
+                    adminCount: allUsers.filter(user => user.role === "Teacher").length,
+                    normalCount: allUsers.filter(user => user.role === "CR").length,
                 };
                 console.log("userINFO",userInfo);
                 return res.status(200).json({ message: "Accessing by the Admin user successful", userInfo ,allUsers});
